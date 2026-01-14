@@ -84,6 +84,11 @@ app.use("/listings",listingRouter);
 //exports all routes from routes reviews.js
 app.use("/listings/:id/reviews",reviewRouter);
 
+
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
+
 app.use("/",userRouter);
 
 
