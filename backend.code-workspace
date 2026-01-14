@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../AIVIO/backend"
+		},
+		{
+			"path": "../../AIVIO/frontend"
+		}
+	],
+    "settings": {
+        "files.associations": {
+            "*.ejs": "html",
+            "iostream": "cpp",
+            "ostream": "cpp"
+        }
+    }
+}
