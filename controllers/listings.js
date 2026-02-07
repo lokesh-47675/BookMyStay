@@ -1,9 +1,32 @@
 const Listing = require("../models/listing");
 
-module.exports.index = async (req,res)=>{
-    const allListing =  await Listing.find({});
-    res.render("listings/index.ejs",{allListing});
-}
+
+
+module.exports.index = async (req, res) => {
+  const { search } = req.query;
+
+  console.log("INDEX HIT");
+  console.log("QUERY:", req.query);
+
+  let allListing;
+
+  if (search && search.trim() !== "") {
+    allListing = await Listing.find({
+      $or: [
+        { title: { $regex: search, $options: "i" } },
+        { location: { $regex: search, $options: "i" } },
+        { country: { $regex: search, $options: "i" } }
+      ]
+    });
+  } else {
+    allListing = await Listing.find({});
+  }
+
+  res.render("listings/index", {
+    allListing,
+    search
+  });
+};
 
 module.exports.renderNewForm = async (req,res)=>{
     res.render("listings/new.ejs");
@@ -69,3 +92,5 @@ module.exports.destroyListing = async (req,res)=>{
    req.flash("success","Listing Deleted");
    res.redirect("/listings");
 };
+
+

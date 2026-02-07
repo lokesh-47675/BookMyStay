@@ -1,24 +1,50 @@
 <nav class="navbar navbar-expand-md navbar-light bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <h4 class="brand-icon"><i class="fa-sharp fa-solid fa-volleyball"></i>BookMyStay</h4>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <h4 class="brand-icon">
+      <i class="fa-sharp fa-solid fa-volleyball"></i>BookMyStay
+    </h4>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-      </div>
+
+      <!-- SEARCH BAR  -->
+      <% if (currPath === "/listings") { %>
+      <form class="d-flex position-absolute start-50 translate-middle-x" action="/listings" method="GET"
+          style="max-width: 300px; width: 100%;">
+          <input class="form-control me-2" type="search" name="search" placeholder="Search " />
+          <button class="btn btn-danger rounded-pill me-2" type="submit">
+              Search
+          </button>
+      </form>
+      <% } %>
+
 
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings"><i class="fa-solid fa-compass"></i>Explore</a>
+        <a class="nav-link" href="/listings">
+          <i class="fa-solid fa-compass"></i> Explore
+        </a>
+
         <a class="nav-link" href="/listings/new">🏠 Add Your Stay</a>
-        <%if(!currUser){%>
-        <a class="btn btn-danger rounded-pill me-2" href="/signup"><b>Sign up</b> <i class="fa-solid fa-user-plus"></i></a>
-        <a class="btn btn-danger rounded-pill me-2" href="/login"><b>Log in</b> <i class="fa-solid fa-user"></i></a>
-        <%}%>
-        <%if(currUser){%>
-        <a class="btn btn-danger rounded-pill me-2" href="/logout"><b>Log out</b> <i class="fa-solid fa-user-minus"></i></a>
-        <%}%>
+
+        <% if (!currUser) { %>
+          <a class="btn btn-danger rounded-pill me-2" href="/signup">
+            <b>Sign up</b> <i class="fa-solid fa-user-plus"></i>
+          </a>
+          <a class="btn btn-danger rounded-pill me-2" href="/login">
+            <b>Log in</b> <i class="fa-solid fa-user"></i>
+          </a>
+        <% } %>
+
+        <% if (currUser) { %>
+          <a class="btn btn-danger rounded-pill me-2" href="/logout">
+            <b>Log out</b> <i class="fa-solid fa-user-minus"></i>
+          </a>
+        <% } %>
       </div>
+
     </div>
   </div>
 </nav>

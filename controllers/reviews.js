@@ -3,8 +3,6 @@ const Listing = require("../models/listing");
 const { default: mongoose } = require("mongoose");
 
 
-
-
 module.exports.createReview  = async(req,res)=>{
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
